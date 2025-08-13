@@ -16,12 +16,12 @@ const links = [
     icon: HomeIcon,
   },
   {
-    name: 'Users',
+    name: 'Customers',
     href: '/dashboard/customers',
     icon: UserGroupIcon,
   },
   {
-    name: 'Documents',
+    name: 'Invoices',
     href: '/dashboard/invoices',
     icon: DocumentDuplicateIcon,
   },
