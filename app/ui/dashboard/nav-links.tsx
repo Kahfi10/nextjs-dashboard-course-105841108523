@@ -17,12 +17,12 @@ const links = [
   },
   {
     name: 'Users',
-    href: '/users',
+    href: '/dashboard/customers',
     icon: UserGroupIcon,
   },
   {
     name: 'Documents',
-    href: '/documents',
+    href: '/dashboard/invoices',
     icon: DocumentDuplicateIcon,
   },
 ];
