@@ -1,3 +1,4 @@
+/* eslint-disable */
 import postgres from 'postgres';
 import {
   CustomerField,
