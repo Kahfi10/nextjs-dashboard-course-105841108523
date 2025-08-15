@@ -1,10 +1,21 @@
 import CustomersTable from '@/app/ui/customers/table';
 import { customers } from '@/app/lib/placeholder-data';
+import { Metadata } from 'next';
 
-export default function CustomersPage() {
-	// Calculate stats for each customer
+
+export const metadata: Metadata = {
+  title: 'Customers | Acme Dashboard',
+};
+
+export default function CustomersPage({ searchParams }: { searchParams?: { query?: string } }) {
 	const { invoices } = require('@/app/lib/placeholder-data');
-	const formattedCustomers = customers.map((customer) => {
+	const query = searchParams?.query?.toLowerCase() || '';
+
+	const filteredCustomers = customers.filter((customer) =>
+		customer.name.toLowerCase().includes(query) || customer.email.toLowerCase().includes(query)
+	);
+
+	const formattedCustomers = filteredCustomers.map((customer) => {
 		const customerInvoices = invoices.filter((inv: { customer_id: string; status: string; amount: number }) => inv.customer_id === customer.id);
 		const total_invoices = customerInvoices.length;
 		const total_pending = customerInvoices
@@ -20,5 +31,6 @@ export default function CustomersPage() {
 			total_paid: `$${(total_paid / 100).toFixed(2)}`,
 		};
 	});
+
 	return <CustomersTable customers={formattedCustomers} />;
 }
